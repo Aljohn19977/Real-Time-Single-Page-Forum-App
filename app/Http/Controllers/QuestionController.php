@@ -25,7 +25,7 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Question $question)
     {
         Question::create($request->all());
         return response('Created',Response::HTTP_CREATED);
@@ -49,9 +49,10 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Question $question)
     {
-        //
+        $question->update($request->all());
+        return response('Update',Response::HTTP_ACCEPTED);
     }
 
     /**
